@@ -13,4 +13,6 @@ public class MemberDTO {
     private String nickname;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+
 }

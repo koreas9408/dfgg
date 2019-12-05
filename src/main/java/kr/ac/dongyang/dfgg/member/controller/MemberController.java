@@ -35,7 +35,7 @@ public class MemberController {
     public String login(@RequestParam("account") String account
                         , @RequestParam("password") String password) throws Exception {
 
-        MemberDTO member = memberService.findByMemberId(account, password);
+        MemberDTO member = memberService.findByMember(account, password);
 
         if (member == null) {
             System.out.println("회원이 없습니다 !");

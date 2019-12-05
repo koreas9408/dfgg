@@ -2,9 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.ac.dongyang.dfgg.member.dao.MemberDAO">
 
-    <select id="findByMemberIdandPassword" resultType="MemberDTO">
-        select ID, ACCOUNT, NICKNAME, CREATED_AT, UPDATED_AT from tbl_member
-        where ACCOUNT = #{account} and PASSWORD = #{password}
+    <select id="findByAccount" parameterType="String" resultType="Integer">
+        SELECT COUNT(*)
+          FROM TBL_MEMBER
+         WHERE ACCOUNT = #{account}
+    </select>
+
+    <select id="findByPassword" parameterType="String" resultType="String">
+        SELECT PASSWORD
+          FROM TBL_MEMBER
+         WHERE ACCOUNT = #{account}
+    </select>
+
+    <select id="findByMember" resultType="MemberDTO">
+        SELECT ID, ACCOUNT, NICKNAME, CREATED_AT, UPDATED_AT
+          FROM TBL_MEMBER
+         WHERE ACCOUNT = #{account}
     </select>
 
     <insert id="insertMember" parameterType="MemberDTO">
