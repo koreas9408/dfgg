@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.dongyang.dfgg.member.dao.MemberDAO">
+
+    <select id="findByMemberIdandPassword" resultType="MemberDTO">
+        select ID, ACCOUNT, NICKNAME, CREATED_AT, UPDATED_AT from tbl_member
+        where ACCOUNT = #{account} and PASSWORD = #{password}
+    </select>
+
+    <insert id="insertMember" parameterType="MemberDTO">
+        INSERT INTO TBL_MEMBER (ACCOUNT, PASSWORD, NICKNAME, CREATED_AT)
+        VALUES(#{account}, #{password}, #{nickname}, now())
+    </insert>
+
+</mapper>

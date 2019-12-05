@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.dongyang.dfgg.board.dao.BoardDAO">
+
+    <select id="findAll" resultType="BoardDTO">
+        select * from tbl_board
+    </select>
+
+    <insert id="insertBoard" parameterType="BoardDTO">
+        INSERT INTO TBL_BOARD (TITLE, CONTENT, WRITER, CREATED_AT)
+        VALUES(#{title}, #{content}, #{writer}, now())
+    </insert>
+
+    <select id="findByBoardId" resultType="BoardDTO">
+        select BNO, TITLE, CONTENT, WRITER, CREATED_AT, UPDATED_AT
+        from tbl_board
+        where BNO = #{bno}
+    </select>
+</mapper>
