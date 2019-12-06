@@ -23,8 +23,11 @@ change this template use File | Settings | File Templates. --%>
             position:fixed;
             left:0px;
             bottom:0px;
-            width: inherit;
+            width: 100%;
             text-align: center;
+        }
+        .table-boardList {
+            margin-bottom: 120px;
         }
         .content {
             margin-bottom: 120px;

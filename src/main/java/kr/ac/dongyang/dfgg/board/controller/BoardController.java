@@ -2,6 +2,8 @@ package kr.ac.dongyang.dfgg.board.controller;
 
 import kr.ac.dongyang.dfgg.board.model.BoardDTO;
 import kr.ac.dongyang.dfgg.board.service.BoardService;
+import kr.ac.dongyang.dfgg.common.Criteria;
+import kr.ac.dongyang.dfgg.common.PageMaker;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,15 +24,16 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
-    @GetMapping("")
-    public String findAll(Model model) throws Exception{
-        List<BoardDTO> boardList = boardService.findAll();
-        model.addAttribute("list", boardList);
-        log.info("BoardController findAll called ... ");
+//    @GetMapping("")
+//    public String findAll(Model model) throws Exception{
+//        List<BoardDTO> boardList = boardService.findAll();
+//        model.addAttribute("list", boardList);
+//        log.info("BoardController findAll called ... ");
+//
+//        // 왜 LocalDateTime 이 null이 찍힐까??
+//        return "board/index";
+//    }
 
-        // 왜 LocalDateTime 이 null이 찍힐까??
-        return "board/index";
-    }
     @GetMapping("/{bno}")
     public String findByBoardId(@PathVariable Long bno, Model model) throws Exception {
         log.info("BoardController findByBoardId Method called.....");
@@ -54,5 +57,20 @@ public class BoardController {
         } else {
             return "/";
         }
+    }
+
+    @GetMapping("")
+    public String listPaging(Model model, Criteria criteria) throws Exception {
+        log.info("BoardController - listPaging 메소드 ");
+
+        PageMaker pageMaker = new PageMaker();
+
+        pageMaker.setCriteria(criteria);
+        pageMaker.setTotalCount(boardService.countBoard(criteria));
+
+        model.addAttribute("boardList", boardService.listPaging(criteria));
+        model.addAttribute("pageMaker", pageMaker);
+
+        return "/board/index";
     }
 }

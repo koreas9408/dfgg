@@ -24,6 +24,21 @@
           var loading = $(".loader");
           var jsonData;
 
+          function serverIdChange(myKey) {
+              var kvArray = [
+                  ["anton", "안톤"],
+                  ["bakal", "바칼"],
+                  ["cain", "카인"],
+                  ["casillas", "카시야스"],
+                  ["diregie", "디레지에"],
+                  ["hilder", "힐더"],
+                  ["prey", "프레이"],
+                  ["siroco", "시로코"]];
+
+              var myMap = new Map(kvArray);
+              return myMap.get(myKey);
+          }
+
           $(".btn-search").on("click", function(event) {
               // event.preventDefault();
               var searchInput = $("#searchInput").val().trim();
@@ -46,8 +61,9 @@
                       jsonData = data;
                       // i : index / v : value
                       $.each(jsonData.rows, function (i, v) {
+                          console.log(v.serverId);
                           var str = '<div class="character"><div class="character-img"><img src="https://img-api.neople.co.kr/df/servers/' + v.serverId + '/characters/' + v.characterId + '?zoom=1" alt="" srcset=""></div>';
-                          str += '<div>Level:' + v.level + "<br>" + v.serverId + " - " + '<a href="/view?serverId=' + v.serverId + '&characterId=' + v.characterId + '">' + v.characterName +'</a></div>';
+                          str += '<div>Level:' + v.level + "<br>" + serverIdChange(v.serverId) + " - " + '<a href="/view?serverId=' + v.serverId + '&characterId=' + v.characterId + '">' + v.characterName +'</a></div>';
                           str += '<div>' + v.jobGrowName +'</div></div>';
 
                           content.append(str);

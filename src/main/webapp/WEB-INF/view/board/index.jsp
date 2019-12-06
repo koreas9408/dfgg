@@ -11,6 +11,7 @@
 <jsp:include page="../include/header.jsp"/>
 
 <body>
+<div class="table-boardList">
     <table class="table table-striped">
         <tbody>
             <thead>
@@ -20,8 +21,7 @@
                 <th scope="col" colspan="1">작성날짜</th>
             </tr>
             </thead>
-        <tbody>
-    <c:forEach var="boardDTO" items="${list}">
+    <c:forEach var="boardDTO" items="${boardList}">
         <tr>
             <td colspan="2"><a href="/board/<c:out value="${boardDTO.bno}"/>"><c:out value="${boardDTO.title}"/></a></td>
             <td><c:out value="${boardDTO.writer}"/></td>
@@ -32,9 +32,23 @@
     <div class="btn-write" align="right">
         <button type="button" class="btn btn-primary"><a href="/board/write">글작성</a></button>
     </div>
-
-
-    <c:if test="${empty list}">
+    <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <c:if test="${pageMaker.prev}">
+                    <li class="page-item"><a class="page-link" href="/board?page=${pageMaker.startPage - 1}">이전</a> </li>
+                </c:if>
+                <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+                    <li class="page-item" <c:out value="${pageMaker.criteria.page == idx ? 'active' : ''}" />>
+                        <a class="page-link" href="/board?page=${idx}">${idx}</a>
+                    </li>
+                </c:forEach>
+                <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+                    <li class="page-item"><a class="page-link" href="/board?page=${pageMaker.endPage + 1}">다음</a></li>
+                </c:if>
+            </ul>
+    </nav>
+</div>
+    <c:if test="${empty boardList}">
         ${"No data from controller "}
     </c:if>
     <jsp:include page="../include/footer.jsp"/>

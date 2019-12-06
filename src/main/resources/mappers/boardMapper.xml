@@ -16,4 +16,22 @@
         from tbl_board
         where BNO = #{bno}
     </select>
+
+    <select id="listPaging" resultType="BoardDTO">
+        <![CDATA[
+        SELECT BNO, TITLE, CONTENT, WRITER, CREATED_AT, UPDATED_AT
+          FROM TBL_BOARD
+         WHERE BNO > 0
+         ORDER BY BNO DESC, CREATED_AT DESC
+         LIMIT #{pageStart}, #{perPageNum}
+        ]]>
+    </select>
+
+    <select id="countBoard" resultType="int">
+        <![CDATA[
+        SELECT COUNT(BNO)
+          FROM TBL_BOARD
+         WHERE BNO > 0
+        ]]>
+    </select>
 </mapper>
