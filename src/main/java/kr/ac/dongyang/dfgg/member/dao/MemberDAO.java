@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface MemberDAO {
-    public void insertMember(MemberDTO member) throws Exception;
-    public MemberDTO findByMember(String account) throws Exception;
+    public void insertMember(MemberDTO member);
+    public MemberDTO findByMember(String account);
     public int findByAccount(String account);
     public String findByPassword(String password);
 

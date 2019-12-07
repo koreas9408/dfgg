@@ -15,14 +15,14 @@
     </select>
 
     <select id="findByMember" resultType="MemberDTO">
-        SELECT ID, ACCOUNT, NICKNAME, CREATED_AT, UPDATED_AT
+        SELECT ID, ACCOUNT, NICKNAME, CREATED_AT, UPDATED_AT, ROLE
           FROM TBL_MEMBER
          WHERE ACCOUNT = #{account}
     </select>
 
     <insert id="insertMember" parameterType="MemberDTO">
-        INSERT INTO TBL_MEMBER (ACCOUNT, PASSWORD, NICKNAME, CREATED_AT)
-        VALUES(#{account}, #{password}, #{nickname}, now())
+        INSERT INTO TBL_MEMBER (ACCOUNT, PASSWORD, NICKNAME, CREATED_AT, ROLE)
+        VALUES(#{account}, #{password}, #{nickname}, now(), #{role})
     </insert>
 
 </mapper>

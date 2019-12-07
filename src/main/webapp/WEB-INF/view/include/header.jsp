@@ -75,9 +75,23 @@ change this template use File | Settings | File Templates. --%>
                 <li class="nav-item">
                     <a class="nav-link" href="/board">커뮤니티</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/member/register">회원가입</a>
-                </li>
+                <c:if test="${not empty member}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">${sessionScope.member.nickname}님 환영합니다!</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">로그아웃</a>
+                    </li>
+                </c:if>
+                <c:if test="${empty sessionScope.member}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/member/register">회원가입</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/oauth2/authorization/google">구글 로그인</a>
+                    </li>
+                </c:if>
+
             </ul>
 
         </div>
