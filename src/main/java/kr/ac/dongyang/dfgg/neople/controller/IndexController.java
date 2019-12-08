@@ -1,6 +1,7 @@
 package kr.ac.dongyang.dfgg.neople.controller;
 
 import kr.ac.dongyang.dfgg.common.NeopleApiHelper;
+import kr.ac.dongyang.dfgg.config.auth.LoginUser;
 import kr.ac.dongyang.dfgg.config.auth.model.SessionMember;
 import kr.ac.dongyang.dfgg.member.model.MemberDTO;
 import kr.ac.dongyang.dfgg.neople.vo.SearchVO;
@@ -24,9 +25,10 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionMember member) {
 
-        SessionMember member = (SessionMember) httpSession.getAttribute("member");
+        // @LoginUser 어노테이션 사용
+        // SessionMember member = (SessionMember) httpSession.getAttribute("member");
 
         if (member != null) {
             model.addAttribute("memberName", member.getNickname());
