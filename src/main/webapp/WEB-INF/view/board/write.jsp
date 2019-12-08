@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -17,7 +18,7 @@
         </div>
         <div class="form-group">
             <label>작성자</label>
-            <textarea type="text" class="form-control" name="writer" id="form-writer" row="3"></textarea>
+            <input type="text" class="form-control" name="writer" id="form-writer" aria-describedby="emailHelp" value="<c:out value="${member}"/>" readonly>
         </div>
         <div class="form-group">
             <label>글 내용</label>

@@ -4,6 +4,8 @@ import kr.ac.dongyang.dfgg.board.model.BoardDTO;
 import kr.ac.dongyang.dfgg.board.service.BoardService;
 import kr.ac.dongyang.dfgg.common.Criteria;
 import kr.ac.dongyang.dfgg.common.PageMaker;
+import kr.ac.dongyang.dfgg.config.auth.LoginUser;
+import kr.ac.dongyang.dfgg.config.auth.model.SessionMember;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,11 +41,18 @@ public class BoardController {
         log.info("BoardController findByBoardId Method called.....");
         BoardDTO boardDTO = boardService.findByBoardId(bno);
         model.addAttribute("boardDTO", boardDTO);
-        return "board/view";
+        return "/board/view";
     }
     @GetMapping("/write")
-    public String writeBoard() {
-        return "board/write";
+    public String writeBoard(Model model, @LoginUser SessionMember member) {
+
+        if (model != null) {
+            model.addAttribute("member", member.getNickname());
+        } else {
+            return "/";
+        }
+
+        return "/board/write";
     }
 
     @PostMapping("/write")
