@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import java.util.List;
 
 
 @Controller
@@ -24,7 +23,7 @@ import java.util.List;
 public class BoardController {
 
     @Autowired
-    BoardService boardService;
+    private BoardService boardService;
 
 //    @GetMapping("")
 //    public String findAll(Model model) throws Exception{

@@ -24,14 +24,15 @@
             <label>글 내용</label>
             <textarea type="text" class="form-control" name="content" id="form-content" row="3"></textarea>
         </div>
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-danger btn-cancle">취소</button>
+        <button type="button" class="btn btn-primary btn-submit">작성하기</button>
     </form>
     <jsp:include page="../include/footer.jsp" />
 
 
     <script type="text/javascript">
         $(function () {
-            $(".btn").click(function (e) {
+            $(".btn-submit").click(function (e) {
                 e.preventDefault();
                 var title = $("#form-title").val();
                 var writer = $("#form-writer").val();
@@ -52,6 +53,10 @@
                 } else {
                     $("#form-write").submit();
                 }
+            });
+
+            $(".btn-cancle").click(function () {
+               location.href="/board";
             });
         });
     </script>

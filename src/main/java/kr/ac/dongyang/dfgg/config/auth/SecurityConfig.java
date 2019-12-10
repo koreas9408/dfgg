@@ -16,11 +16,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/static/css/**", "/static/js/**", "/static/images/**", "/member/**").permitAll()
+                .antMatchers("/", "/static/error/**", "/static/css/**", "/static/js/**", "/static/images/**", "/member/**").permitAll()
                 .antMatchers("/board/**").hasRole(Role.USER.name())
                 .anyRequest().authenticated()
                 .and()
-                .exceptionHandling().accessDeniedPage("/error/error403")
+                .exceptionHandling().accessDeniedPage("/static/error/403.html")
                 .and()
                 .logout()
                         .logoutUrl("/logout")
