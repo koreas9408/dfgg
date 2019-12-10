@@ -10,10 +10,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.HttpRequestHandler;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -35,13 +33,21 @@ public class BoardController {
 //        return "board/index";
 //    }
 
-    @GetMapping("/{bno}")
-    public String findByBoardId(@PathVariable Long bno, Model model) throws Exception {
+    @GetMapping("/view")
+    public String findByBoardId(@RequestParam Long bno, Model model) throws Exception {
         log.info("BoardController findByBoardId Method called.....");
         BoardDTO boardDTO = boardService.findByBoardId(bno);
-        model.addAttribute("boardDTO", boardDTO);
-        return "/board/view";
+
+        // DB에서 전달받은 boardDTO 객체가 있을 경우에만 페이지 출력
+        if (boardDTO != null) {
+            model.addAttribute("boardDTO", boardDTO);
+            return "/board/view";
+        }
+
+        // 객체가 없을 경우 메인으로 리다이렉트
+        return "redirect:/";
     }
+
     @GetMapping("/write")
     public String writeBoard(Model model, @LoginUser SessionMember member) {
 

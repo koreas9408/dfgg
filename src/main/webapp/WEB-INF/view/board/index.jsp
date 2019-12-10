@@ -23,7 +23,7 @@
             </thead>
     <c:forEach var="boardDTO" items="${boardList}">
         <tr>
-            <td colspan="2"><a href="/board/<c:out value="${boardDTO.bno}"/>"><c:out value="${boardDTO.title}"/></a></td>
+            <td colspan="2"><a href="/board/view?bno=<c:out value="${boardDTO.bno}"/>"><c:out value="${boardDTO.title}"/></a></td>
             <td><c:out value="${boardDTO.writer}"/></td>
             <td><c:out value="${boardDTO.toStringDateTime(boardDTO.createdAt)}"/></td>
         </tr>
