@@ -4,24 +4,24 @@
 
     <select id="findByAccount" parameterType="String" resultType="Integer">
         SELECT COUNT(*)
-          FROM TBL_MEMBER
+          FROM tbl_member
          WHERE ACCOUNT = #{account}
     </select>
 
     <select id="findByPassword" parameterType="String" resultType="String">
         SELECT PASSWORD
-          FROM TBL_MEMBER
+          FROM tbl_member
          WHERE ACCOUNT = #{account}
     </select>
 
     <select id="findByMember" resultType="MemberDTO">
         SELECT ID, ACCOUNT, NICKNAME, CREATED_AT, UPDATED_AT, ROLE
-          FROM TBL_MEMBER
+          FROM tbl_member
          WHERE ACCOUNT = #{account}
     </select>
 
     <insert id="insertMember" parameterType="MemberDTO">
-        INSERT INTO TBL_MEMBER (ACCOUNT, PASSWORD, NICKNAME, CREATED_AT, ROLE)
+        INSERT INTO tbl_member (ACCOUNT, PASSWORD, NICKNAME, CREATED_AT, ROLE)
         VALUES(#{account}, #{password}, #{nickname}, now(), #{role})
     </insert>
 
