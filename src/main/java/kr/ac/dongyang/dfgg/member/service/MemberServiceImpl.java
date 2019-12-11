@@ -43,4 +43,5 @@ public class MemberServiceImpl implements MemberService {
         member.setPassword(encodePassword);
         memberDAO.insertMember(member);
     }
+
 }

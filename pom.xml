@@ -11,7 +11,7 @@
     <groupId>kr.ac.dongyang</groupId>
     <artifactId>dfgg</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>dfgg</name>
     <description>Demo project for Spring Boot</description>
 

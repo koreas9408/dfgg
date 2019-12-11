@@ -6,6 +6,7 @@ import kr.ac.dongyang.dfgg.config.auth.model.SessionMember;
 import kr.ac.dongyang.dfgg.neople.vo.SearchVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class IndexController {
 
-    private final HttpSession httpSession;
+    // private final HttpSession httpSession;
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionMember member) {
