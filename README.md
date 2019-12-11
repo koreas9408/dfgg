@@ -10,3 +10,5 @@
 
 ##### AWS EC2 서버 구축 (Java8, Git, Mysql 설치 )
 ##### AWS RDS - MariaDB 구축
+
+##### Kakao Talk에서는 User-Agent가 kakaotalk으로 되어있어서 구글 정책으로 인해 OAuth가 차단이 되었다고 합니다. (사파리, 크롬, 파이어폭스는 확인했습니다.)
