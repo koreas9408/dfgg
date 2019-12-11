@@ -7,7 +7,7 @@
     </select>
 
     <insert id="insertBoard" parameterType="BoardDTO">
-        INSERT INTO TBL_BOARD (TITLE, CONTENT, WRITER, CREATED_AT)
+        INSERT INTO tbl_board (TITLE, CONTENT, WRITER, CREATED_AT)
         VALUES(#{title}, #{content}, #{writer}, now())
     </insert>
 
@@ -20,7 +20,7 @@
     <select id="listPaging" resultType="BoardDTO">
         <![CDATA[
         SELECT BNO, TITLE, CONTENT, WRITER, CREATED_AT, UPDATED_AT
-          FROM TBL_BOARD
+          FROM tbl_board
          WHERE BNO > 0
          ORDER BY BNO DESC, CREATED_AT DESC
          LIMIT #{pageStart}, #{perPageNum}
@@ -30,7 +30,7 @@
     <select id="countBoard" resultType="int">
         <![CDATA[
         SELECT COUNT(BNO)
-          FROM TBL_BOARD
+          FROM tbl_board
          WHERE BNO > 0
         ]]>
     </select>
