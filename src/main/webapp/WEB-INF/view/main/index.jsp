@@ -46,6 +46,7 @@
                   alert("캐릭터 명을 입력해주세요 ! ");
                   return false;
               }
+
               content.hide();
               loading.show();
 
